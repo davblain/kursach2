@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>My Secret Spot Ui Kit | Home</title>
+
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'/>
+    <link rel="stylesheet" href="css/bootstrap.css"/>
+    <link rel="stylesheet" href="css/bootstrap-responsive.css"/>
+    <link rel="stylesheet" href="css/flexslider.css" />
+    <link rel="stylesheet" href="css/custom-styles.css"/>
+
+</head>
+<body>
+<div class="container main-container">
+    <div class="row header"><!-- Begin Header -->
+
+        <!-- Logo
+        ================================================== -->
+        <div class="span5 logo">
+            <a href="/"><img src="img/piccolo-logo.png" alt="" /></a>
+            <h5>Big Things... Small Packages</h5>
+        </div>
+
+        <!-- Main Navigation
+        ================================================== -->
+        <div class="span7 navigation">
+            <div class="navbar hidden-phone">
+
+                <ul class="nav">
+                    <li> <a href="/">Home</a></li>
+                    <li><a href="arts">Arts</a></li>
+                    <li><a href="authors">Authors</a> </li>
+                    <li><a href="collections">Collections</a></li>
+                    <li><a href="expositions">Expositions</a></li>
+                </ul>
+
+            </div>
+
+            <!-- Mobile Nav
+           ================================================== -->
+            <form action="#" id="mobile-nav" class="visible-phone">
+                <div class="mobile-nav-select">
+                    <select onchange="window.open(this.options[this.selectedIndex].value,'_top')">
+                        <option value="">Navigate...</option>
+                        <option value="/">Home</option>
+                        <option value="arts">Arts</option>
+                        <option value="authors">Authors</option>
+                        <option value="collections">Collections</option>
+                        <option value="collections">Expositions</option>
+                    </select>
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+    <section layout:fragment="custom-content">
+        <p>This is a custom content that you can provide</p>
+
+    </section>
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<script src="http://code.jquery.com/jquery.js"></script>
+<script src="webjars/bootstrap/4.0.0-alpha.6-1/js/bootstrap.min.js"></script>
+</body>
+</html>

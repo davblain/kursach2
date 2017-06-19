@@ -1,8 +1,11 @@
 package com.example.demo;
 
 import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.databind.JsonSerializer;
-import com.fasterxml.jackson.databind.SerializerProvider;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.ObjectCodec;
+import com.fasterxml.jackson.databind.*;
+import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Component;
@@ -35,4 +38,18 @@ public class DemoApplication {
 			jsonGenerator.writeEndObject();
 		}
 	}
-}
+
+	@Component
+	public class CalendarDeserializer extends JsonDeserializer<Calendar> {
+		@Override
+		public Calendar deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException, JsonProcessingException {
+
+			ObjectCodec oc = jsonParser.getCodec();
+			JsonNode node = oc.readTree(jsonParser);
+			Calendar rez =Calendar.getInstance();
+			rez.set(node.get("year").asInt(),node.get("month").asInt(),node.get("day").asInt());
+			return rez;
+		}
+	}
+
+	}

@@ -16,7 +16,6 @@ import java.util.Collection;
 public class ArtsEntity implements Serializable {
     private Integer id;
     private String name;
-    private String image;
     private Integer yearOfCreation;
     private String description;
     private MaterialsEntity material;
@@ -25,7 +24,6 @@ public class ArtsEntity implements Serializable {
     private GenresEntity genre;
     private Collection<CollectionsEntity> collections;
     private Collection<ExpositionsEntity> expositions;
-    private String prewImage;
 
 
     @Id
@@ -51,15 +49,6 @@ public class ArtsEntity implements Serializable {
     }
 
     @Basic
-    @Column(name = "image", nullable = true, length = 45)
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-    @Basic
     @Column(name = "year_of_creation", nullable = true)
     public Integer getYearOfCreation() {
         return yearOfCreation;
@@ -78,15 +67,6 @@ public class ArtsEntity implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    @Basic
-    @Column(name = "prew_image", nullable = true, length = 45)
-    public String getPrewImage() {
-        return prewImage;
-    }
-    public void setPrewImage(String prewImage) {
-        this.prewImage = prewImage;
     }
 
 

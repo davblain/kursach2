@@ -6,6 +6,8 @@ import com.example.demo.business.service.service.ArtsService;
 import com.example.demo.business.service.service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.support.PagedListHolder;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -52,6 +54,15 @@ public class AuthorsController {
 
     }
 
+    ResponseEntity<AuthorsEntity> updateAuthor(@PathVariable int id, @RequestBody AuthorsEntity author)
+    {
+        AuthorsEntity authorsEntity=authorService.find(id);
+        authorsEntity.setName(author.getName());
+        authorsEntity.setDesription(author.getDesription());
+        authorsEntity.setDateOfBirth(author.getDateOfBirth());
+        authorsEntity.setCountry(author.getCountry());
+        return new ResponseEntity<AuthorsEntity>(authorsEntity, HttpStatus.OK);
+    }
 
     @RequestMapping("/service/authors")
     @ResponseBody
@@ -62,11 +73,14 @@ public class AuthorsController {
         return (authorService.searchByName(search));
     }
 
+
     @RequestMapping("/service/authors/{id}")
     @ResponseBody
-    AuthorsEntity author(@PathVariable int id)
+    AuthorsEntity authorDetail(@PathVariable int id)
     {
         AuthorsEntity author = authorService.find(id);
         return  author;
     }
+
+
 }

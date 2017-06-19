@@ -5,6 +5,7 @@ package com.example.demo.business.Entities;
 import com.example.demo.DemoApplication;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.stereotype.Controller;
@@ -24,13 +25,11 @@ import java.util.Collection;
 public class AuthorsEntity implements Serializable {
     private Integer id;
     private String name;
-    private String img;
     private String desription;
     private Calendar dateOfBirth;
     private Calendar dateOfDeath;
     private CountriesEntity country;
     private Collection<ArtsEntity> arts;
-
 
     @Id
     @GenericGenerator(name="gen",strategy="increment")
@@ -64,6 +63,7 @@ public class AuthorsEntity implements Serializable {
         this.desription = desription;
     }
     @JsonSerialize(using=DemoApplication.CalendarSerializer.class)
+    @JsonDeserialize(using = DemoApplication.CalendarDeserializer.class)
     @Temporal(value = TemporalType. DATE)
     @Column(name = "date_of_birth", nullable = true)
     public Calendar getDateOfBirth() {
@@ -74,6 +74,7 @@ public class AuthorsEntity implements Serializable {
         this.dateOfBirth = dateOfBirth;
     }
     @JsonSerialize(using=DemoApplication.CalendarSerializer.class)
+    @JsonDeserialize(using = DemoApplication.CalendarDeserializer.class)
     @Temporal(value = TemporalType. DATE)
     @Column(name = "date_of_death", nullable = true)
     public Calendar getDateOfDeath() {
@@ -82,15 +83,6 @@ public class AuthorsEntity implements Serializable {
 
     public void setDateOfDeath(Calendar dateOfDeath) {
         this.dateOfDeath = dateOfDeath;
-    }
-    @Basic
-    @Column(name="img",nullable=true,length = 70)
-    public String getImg() {
-        return img;
-    }
-
-    public void setImg(String img) {
-        this.img = img;
     }
 
     @OneToMany(mappedBy = "author")
